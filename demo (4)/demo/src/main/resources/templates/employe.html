@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Employés</title>
+  <style>
+    /* Styles globaux */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: #333333;
+      margin: 0;
+      padding: 20px;
+
+      /* Image de fond avec URL absolue */
+      background-image: url('/videos/images/background2.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    h1 {
+      color: #FFFFFF; /* Texte du titre en blanc */
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5); /* Fond noir semi-transparent pour le titre */
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #007BFF; /* Boutons en bleu vif */
+      color: #FFFFFF; /* Texte des boutons en blanc */
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: #0056b3; /* Couleur au survol en bleu navy */
+    }
+
+    .back {
+      background-color: #f8f9fa; /* Bouton de retour en gris clair */
+      color: #343a40; /* Texte en gris foncé */
+    }
+
+    .back:hover {
+      background-color: #e2e6ea; /* Couleur au survol pour le bouton de retour */
+    }
+
+    /* Footer button placement */
+    .footer {
+      margin-top: auto;
+      text-align: center;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<h1>Gestion des Employés</h1>
+<div class="buttons">
+  <a href="/employes/add" class="btn">Ajouter un Employé</a>
+  <a href="/employes" class="btn">Liste des Employés</a>
+</div>
+
+<div class="footer">
+  <a href="/" class="btn back">Retour à l'Accueil</a>
+</div>
+</body>
+</html>

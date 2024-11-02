@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Départements</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+
+            /* Image de fond avec URL absolue */
+            background-image: url('/videos/images/background3.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Style pour le titre */
+        h1 {
+            text-align: center; /* Centre le titre */
+            margin-bottom: 20px; /* Espacement en dessous du titre */
+            color: #b22222; /* Couleur du texte du titre */
+        }
+
+        /* Container pour le tableau */
+        .table-container {
+            display: flex;
+            justify-content: center; /* Centre horizontalement */
+            align-items: flex-start; /* Aligne le tableau vers le haut */
+            flex: 1; /* Prend tout l'espace disponible */
+            backdrop-filter: blur(10px); /* Applique un flou en arrière-plan */
+            padding: 20px; /* Espacement autour du tableau */
+            margin-top: 20px; /* Espacement en haut du tableau */
+        }
+
+        table {
+            width: 100%; /* Largeur complète pour le tableau */
+            max-width: 800px; /* Largeur maximale du tableau */
+            border-collapse: collapse; /* Fusionne les bordures */
+            background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent pour le tableau */
+            border-radius: 8px; /* Arrondir les coins du tableau */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour le relief */
+        }
+
+        th, td {
+            padding: 12px; /* Espacement dans les cellules */
+            text-align: left; /* Alignement à gauche du texte */
+            border-bottom: 1px solid #ddd; /* Ligne de séparation entre les lignes */
+        }
+
+        th {
+            background-color: #007BFF; /* Couleur de fond des en-têtes */
+            color: #FFFFFF; /* Couleur du texte des en-têtes */
+        }
+
+        tr:hover {
+            background-color: rgba(245, 245, 245, 0.7); /* Couleur de survol des lignes avec transparence */
+        }
+
+        .btn {
+            padding: 8px 12px; /* Espacement pour les boutons */
+            color: white; /* Couleur du texte des boutons */
+            text-decoration: none; /* Supprime le soulignement des liens */
+            border-radius: 4px; /* Arrondir les coins des boutons */
+            margin-right: 5px; /* Espacement entre les boutons */
+        }
+
+        .btn-primary {
+            background-color: #007BFF; /* Couleur de fond pour le bouton primaire */
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Couleur de fond pour le bouton de danger */
+        }
+
+        .btn-info {
+            background-color: olive; /* Couleur de fond pour le bouton d'informations */
+            /* Pas besoin de margin-left ici */
+        }
+
+        .error {
+            color: red; /* Couleur pour les messages d'erreur */
+        }
+    </style>
+</head>
+<body>
+<h1>Liste des Départements</h1>
+<div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="departement : ${departements}">
+            <td th:text="${departement.id}"></td>
+            <td th:text="${departement.nom}"></td>
+            <td th:text="${departement.description}"></td>
+            <td style="display: flex; align-items: center;"> <!-- Utilisation de flexbox pour aligner les boutons -->
+                <!-- Bouton de modification -->
+                <a th:href="@{/departements/edit/{id}(id=${departement.id})}" class="btn btn-primary">Modifier</a>
+
+                <!-- Bouton de suppression avec confirmation -->
+                <a th:href="@{/departements/delete/{id}(id=${departement.id})}" class="btn btn-danger"
+                   onclick="return confirm('Voulez-vous vraiment supprimer ce département ?');">Supprimer</a>
+
+                <!-- Bouton pour voir les employés -->
+                <a th:href="@{/departements/nom/{nom}(nom=${departement.nom})}" class="btn btn-info">Employés</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

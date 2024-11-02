@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un Département</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+
+            /* Image de fond avec URL absolue */
+            background-image: url('/videos/images/background3.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Conteneur pour le formulaire avec flou d'arrière-plan */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1; /* Prend tout l'espace disponible */
+            backdrop-filter: blur(5px); /* Applique un flou en arrière-plan */
+            text-align: center; /* Centre le texte à l'intérieur du conteneur */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px; /* Largeur maximale du formulaire */
+            background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent pour le formulaire */
+            padding: 30px; /* Espace intérieur au formulaire */
+            border-radius: 8px; /* Arrondir les coins du formulaire */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre pour le relief */
+            width: 100%; /* Largeur complète pour le formulaire */
+            margin: auto; /* Centre le formulaire dans le conteneur */
+        }
+
+        input, select {
+            margin-bottom: 15px; /* Espacement entre les champs */
+            padding: 12px; /* Augmente le remplissage des champs */
+            font-size: 16px;
+            border: 1px solid #ccc; /* Bordure pour les champs */
+            border-radius: 4px; /* Arrondir les coins des champs */
+        }
+
+        h1 {
+            color: #b22222; /* Couleur du titre */
+            margin-bottom: 20px; /* Espacement en bas du titre */
+        }
+
+        label {
+            margin-top: 10px; /* Espacement au-dessus des labels */
+        }
+
+        button {
+            padding: 10px 15px; /* Espacement interne du bouton */
+            color: white; /* Couleur du texte */
+            background-color: #007BFF; /* Couleur de fond du bouton */
+            border: none; /* Supprimer la bordure */
+            border-radius: 4px; /* Arrondir les coins du bouton */
+            cursor: pointer; /* Curseur main sur le bouton */
+            transition: background-color 0.3s; /* Transition pour le changement de couleur */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Couleur de fond du bouton au survol */
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <form th:action="@{/departements/add}" th:object="${departement}" method="post">
+        <h1>Ajouter un Département</h1>
+        <label>Nom du Département:</label>
+        <input type="text" th:field="*{nom}" required/>
+
+        <label>Description:</label>
+        <input type="text" th:field="*{description}" required/>
+
+        <label>Localisation:</label>
+        <input type="text" th:field="*{localisation}" required/>
+
+        <button type="submit">Ajouter</button>
+    </form>
+</div>
+</body>
+</html>

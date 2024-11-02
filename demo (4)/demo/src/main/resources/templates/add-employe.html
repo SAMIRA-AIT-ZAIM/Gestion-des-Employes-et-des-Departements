@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un Employé</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+
+            /* Image de fond avec URL absolue */
+            background-image: url('/videos/images/background2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Styles pour centrer le titre */
+        h1 {
+            text-align: center; /* Centre le texte */
+            margin-bottom: 20px; /* Espacement en dessous du titre */
+            color: black; /* Couleur du texte du titre */
+        }
+
+        /* Container pour centrer le formulaire */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1; /* Prend tout l'espace disponible */
+            backdrop-filter: blur(5px); /* Applique un flou en arrière-plan */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px; /* Augmentation de la largeur maximale du formulaire */
+            background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent pour le formulaire */
+            padding: 30px; /* Augmente l'espace intérieur au formulaire */
+            border-radius: 8px; /* Arrondir les coins du formulaire */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ajoute une ombre pour le relief */
+        }
+
+        input, select {
+            margin-bottom: 15px; /* Espacement entre les champs */
+            padding: 12px; /* Augmente le remplissage des champs */
+            font-size: 16px;
+            border: 1px solid #ccc; /* Bordure pour les champs */
+            border-radius: 4px; /* Arrondir les coins des champs */
+        }
+
+        button {
+            padding: 12px; /* Augmente le remplissage du bouton */
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF; /* Couleur du bouton */
+            color: #FFFFFF; /* Couleur du texte du bouton */
+            border: none; /* Supprime la bordure par défaut */
+            border-radius: 4px; /* Arrondir les coins du bouton */
+            transition: background-color 0.3s; /* Ajoute une transition pour le changement de couleur */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Couleur au survol du bouton */
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Ajouter un Employé</h1>
+<div class="form-container">
+    <form th:action="@{/employes/add}" th:object="${employe}" method="post">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" th:field="*{nom}" required placeholder="Nom" />
+        <div class="error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></div>
+
+        <label for="poste">Poste:</label>
+        <input type="text" id="poste" th:field="*{poste}" required placeholder="Poste" />
+        <div class="error" th:if="${#fields.hasErrors('poste')}" th:errors="*{poste}"></div>
+
+        <label for="salaire">Salaire:</label>
+        <input type="number" id="salaire" th:field="*{salaire}" required placeholder="Salaire en DH" />
+        <div class="error" th:if="${#fields.hasErrors('salaire')}" th:errors="*{salaire}"></div>
+
+        <label for="departement">Département:</label>
+        <select id="departement" name="departementId" th:field="*{departement.id}" required>
+            <option value="" disabled selected>Sélectionnez un département</option>
+            <option th:each="departement : ${departements}"
+                    th:value="${departement.id}"
+                    th:text="${departement.nom}"></option>
+        </select>
+        <div class="error" th:if="${#fields.hasErrors('departement')}" th:errors="*{departement}"></div>
+
+        <button type="submit">Ajouter Employé</button>
+    </form>
+</div>
+
+<div class="error" th:if="${errors != null and !errors.isEmpty()}">
+    <p th:each="error : ${errors}" th:text="${error}"></p>
+</div>
+</body>
+</html>

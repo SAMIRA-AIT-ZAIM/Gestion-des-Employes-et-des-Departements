@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Départements</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+
+            /* Image de fond avec URL absolue */
+            background-image: url('/videos/images/background3.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            text-align: center; /* Centrer le texte */
+        }
+
+        h1 {
+            color: #4A90E2; /* Couleur du titre */
+            margin-bottom: 20px; /* Espacement sous le titre */
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center; /* Centre les boutons horizontalement */
+            margin-bottom: auto; /* Permet d'utiliser l'espace restant */
+        }
+
+        .btn {
+            background-color: #4A90E2; /* Couleur de fond des boutons */
+            color: white; /* Couleur du texte des boutons */
+            padding: 10px 20px; /* Espacement interne des boutons */
+            margin: 5px; /* Espacement entre les boutons */
+            text-decoration: none; /* Retire le soulignement des liens */
+            border-radius: 5px; /* Coins arrondis */
+            transition: background-color 0.3s; /* Effet de transition */
+        }
+
+        .btn:hover {
+            background-color: #4A90E2; /* Couleur de fond au survol */
+        }
+
+        .back {
+            background-color: gray; /* Couleur de fond pour le bouton retour */
+        }
+
+        .back:hover {
+            background-color: #e53935; /* Couleur de fond au survol pour le bouton retour */
+        }
+
+        .footer {
+            margin-top: auto; /* Place le bouton en bas de la page */
+            padding: 20px 0; /* Espacement vertical autour du bouton */
+        }
+    </style>
+</head>
+<body>
+<h1>Gestion des Départements</h1>
+
+<div class="buttons">
+    <a href="/departements" class="btn">Liste de Départements</a>
+    <a href="/departements/add" class="btn">Ajouter un Département</a>
+</div>
+
+<div class="footer">
+    <a href="/" class="btn back">Retour à l'Accueil</a>
+</div>
+</body>
+</html>

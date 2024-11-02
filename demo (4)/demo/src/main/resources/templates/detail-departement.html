@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails du Département</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Supprime la marge par défaut */
+            padding: 20px; /* Ajoute un peu de rembourrage */
+            color: #333; /* Couleur du texte */
+            background-image: url('/videos/images/background3.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            text-align: center; /* Centrer le texte */
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: white; /* Couleur du titre */
+        }
+        h2 {
+            margin: 20px 0; /* Espacement vertical autour des sous-titres */
+            color: white; /* Couleur des sous-titres */
+        }
+        div {
+            background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour le texte */
+            padding: 20px; /* Rembourrage autour du contenu */
+            border-radius: 8px; /* Coins arrondis */
+            margin-bottom: 20px; /* Espacement en bas */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre pour le relief */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour le tableau */
+            border-radius: 8px; /* Coins arrondis */
+            overflow: hidden; /* Pour arrondir les coins des cellules */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333; /* Couleur du texte des en-têtes */
+        }
+        a {
+            display: inline-block; /* Pour ajouter du rembourrage */
+            margin-top: 20px; /* Espacement au-dessus du lien */
+            padding: 10px 20px; /* Rembourrage autour du lien */
+            background-color: #007BFF; /* Couleur du bouton */
+            color: white; /* Couleur du texte du lien */
+            text-decoration: none; /* Supprime le soulignement */
+            border-radius: 5px; /* Coins arrondis */
+            transition: background-color 0.3s; /* Transition pour le changement de couleur */
+        }
+        a:hover {
+            background-color: #0056b3; /* Couleur au survol du bouton */
+        }
+    </style>
+</head>
+<body>
+<h1>Détails du Département</h1>
+
+<div>
+    <h2 th:text="${departement.nom}"></h2>
+    <p><strong>Description :</strong> <span th:text="${departement.description}"></span></p>
+    <p><strong>Localisation :</strong> <span th:text="${departement.localisation}"></span></p>
+</div>
+
+<h2>Employés Associés</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Poste</th>
+        <th>Salaire</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employe : ${employes}">
+        <td th:text="${employe.id}"></td>
+        <td th:text="${employe.nom}"></td>
+        <td th:text="${employe.poste}"></td>
+        <td th:text="${employe.salaire}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/departements">Retour à la liste des départements</a>
+</body>
+</html>

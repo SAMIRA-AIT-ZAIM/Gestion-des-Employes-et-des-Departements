@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifier Employé</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+
+            /* Image de fond avec URL absolue */
+            background-image: url('/videos/images/background2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Style pour le titre */
+        h1 {
+            text-align: center; /* Centre le titre */
+            margin-bottom: 20px; /* Espacement en dessous du titre */
+            color: #b22222; /* Couleur du texte du titre */
+        }
+
+        /* Container pour le formulaire */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centre horizontalement */
+            justify-content: flex-start; /* Aligne le contenu vers le haut */
+            backdrop-filter: blur(5px); /* Applique un flou en arrière-plan */
+            padding: 20px; /* Espacement autour du formulaire */
+            border-radius: 8px; /* Arrondir les coins */
+            background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+            width: 100%; /* Largeur complète pour le conteneur */
+            max-width: 400px; /* Largeur maximale pour le conteneur */
+            margin: 20px auto; /* Centre le conteneur verticalement */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour le relief */
+        }
+
+        /* Style pour les éléments du formulaire */
+        div {
+            margin-bottom: 15px; /* Espacement entre les éléments */
+            width: 100%; /* Largeur complète pour les éléments */
+        }
+
+        label {
+            display: block; /* Affiche le label comme un bloc */
+            margin-bottom: 5px; /* Espacement en dessous du label */
+        }
+
+        input, select {
+            width: 100%; /* Largeur complète pour les champs */
+            padding: 8px; /* Espacement à l'intérieur des champs */
+            border: 1px solid #ccc; /* Bordure grise */
+            border-radius: 4px; /* Arrondir les coins des champs */
+        }
+
+        button {
+            padding: 10px 15px; /* Espacement à l'intérieur du bouton */
+            background-color: #007BFF; /* Couleur de fond pour le bouton */
+            color: white; /* Couleur du texte du bouton */
+            border: none; /* Supprime la bordure du bouton */
+            border-radius: 4px; /* Arrondir les coins du bouton */
+            cursor: pointer; /* Change le curseur en main */
+            transition: background-color 0.3s; /* Ajoute une transition pour le changement de couleur */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Couleur de fond au survol du bouton */
+        }
+
+        .error {
+            color: red; /* Couleur rouge pour les messages d'erreur */
+        }
+    </style>
+</head>
+<body>
+<h1>Modifier Employé</h1>
+
+<div class="form-container">
+    <form th:action="@{/employes/update/{id}(id=${employe.id})}" th:object="${employe}" method="post">
+        <div>
+            <label>Nom :</label>
+            <input type="text" th:field="*{nom}" />
+            <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="error"></div>
+        </div>
+        <div>
+            <label>Poste :</label>
+            <input type="text" th:field="*{poste}" />
+            <div th:if="${#fields.hasErrors('poste')}" th:errors="*{poste}" class="error"></div>
+        </div>
+        <div>
+            <label>Salaire :</label>
+            <input type="number" th:field="*{salaire}" />
+            <div th:if="${#fields.hasErrors('salaire')}" th:errors="*{salaire}" class="error"></div>
+        </div>
+        <div>
+            <label>Département :</label>
+            <select id="departement" name="departementId" th:field="*{departement.id}">
+                <option th:each="departement : ${departements}"
+                        th:value="${departement.id}"
+                        th:text="${departement.nom}"
+                        th:selected="${departement.id == employe.departement?.id}"></option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Mettre à jour</button>
+            <a th:href="@{/employes}" style="text-decoration: none; color: #007BFF;">Annuler</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

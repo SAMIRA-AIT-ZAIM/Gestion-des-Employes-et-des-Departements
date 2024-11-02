@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Modifier Département</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: #333333;
+      margin: 0;
+      padding: 20px;
+
+      /* Image de fond avec URL absolue */
+      background-image: url('/videos/images/background3.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Styles pour centrer le titre */
+    h1 {
+      text-align: center; /* Centre le texte */
+      margin-bottom: 20px; /* Espacement en dessous du titre */
+      color: black; /* Couleur du texte du titre */
+    }
+
+    /* Container pour centrer le formulaire */
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1; /* Prend tout l'espace disponible */
+      position: relative; /* Nécessaire pour le positionnement z-index */
+    }
+
+    /* Formulaire avec fond semi-transparent */
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px; /* Largeur maximale du formulaire */
+      background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+      padding: 30px; /* Espace intérieur du formulaire */
+      border-radius: 8px; /* Arrondir les coins du formulaire */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre pour le relief */
+    }
+
+    input {
+      margin-bottom: 15px; /* Espacement entre les champs */
+      padding: 12px; /* Augmente le remplissage des champs */
+      font-size: 16px;
+      border: 1px solid #ccc; /* Bordure pour les champs */
+      border-radius: 4px; /* Arrondir les coins des champs */
+    }
+
+    button {
+      padding: 12px; /* Augmente le remplissage du bouton */
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007BFF; /* Couleur du bouton */
+      color: #FFFFFF; /* Couleur du texte du bouton */
+      border: none; /* Supprime la bordure par défaut */
+      border-radius: 4px; /* Arrondir les coins du bouton */
+      transition: background-color 0.3s; /* Ajoute une transition pour le changement de couleur */
+    }
+
+    button:hover {
+      background-color: #0056b3; /* Couleur au survol du bouton */
+    }
+  </style>
+</head>
+<body>
+<h1>Modifier Département</h1>
+
+<div class="form-container">
+  <!-- Formulaire de mise à jour du département -->
+  <form th:action="@{'/departements/update/' + ${departement.id}}" th:object="${departement}" method="post">
+    <div>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" th:field="*{nom}" required />
+    </div>
+
+    <!-- Ajoutez d'autres champs pour les attributs du département ici -->
+
+    <div>
+      <button type="submit">Mettre à jour</button>
+    </div>
+  </form>
+</div>
+
+<a th:href="@{/departements}">Retour à la liste des départements</a>
+</body>
+</html>
