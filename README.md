@@ -33,3 +33,7 @@ Affiche les informations d'un département sélectionné ainsi que la liste des 
 
 
 ## vidéo 
+
+https://github.com/user-attachments/assets/9c6038c4-d5d2-45a1-9333-d71bb06d0741
+
+
